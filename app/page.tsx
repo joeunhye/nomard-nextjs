@@ -1,7 +1,13 @@
 import React from "react";
+import Navigation from "./../components/navigation";
 
 function page() {
-    return <div>Hello NEXT.JS</div>;
+    return (
+        <div>
+            <Navigation />
+            Hello NEXT.JS
+        </div>
+    );
 }
 
 export default page;
