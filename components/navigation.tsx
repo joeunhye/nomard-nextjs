@@ -6,7 +6,6 @@ import React from "react";
 
 function navigation() {
     const path = usePathname();
-    console.log(path);
 
     return (
         <nav>

@@ -1,13 +1,26 @@
-import React from "react";
-import Navigation from "./../components/navigation";
+import Link from "next/link";
 
-function page() {
+export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
+
+async function getMovies() {
+    const response = await fetch(API_URL);
+    const json = await response.json();
+    return json;
+}
+
+async function HomePage() {
+    const movies = await getMovies();
     return (
         <div>
-            <Navigation />
-            Hello NEXT.JS
+            <ul>
+                {movies.map((movie) => (
+                    <li key={movie.id}>
+                        <Link href={`/movie/${movie.id}`}>{movie.title}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export default page;
+export default HomePage;
