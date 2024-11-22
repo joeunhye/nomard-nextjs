@@ -1,6 +1,6 @@
 import { API_URL } from "../../page";
 import MovieVideo from "../../../components/movie-video";
-import MovieInfo from "./../../../components/movie-info";
+import MovieInfo, { getMovie } from "./../../../components/movie-info";
 import { Suspense } from "react";
 
 // async function getMovie(id: string) {
@@ -15,7 +15,15 @@ import { Suspense } from "react";
 //     return response.json();
 // }
 
-async function MovieDetail({ params }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+    let { id } = await params;
+    const movie = await getMovie(id);
+    return {
+        title: movie.title,
+    };
+}
+
+async function MovieDetail({ params }: { params: Promise<{ id: string }> }) {
     let { id } = await params;
     // const movie = await getMovie(id);
     // const video = await getVideo(id);
