@@ -1,3 +1,5 @@
+"use client";
+
 function Error() {
     return <div>Error</div>;
 }
